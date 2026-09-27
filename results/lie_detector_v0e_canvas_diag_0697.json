@@ -1,0 +1,60 @@
+{
+ "created_utc": "2026-09-27T20:08:31Z",
+ "purpose": "redteam_ink.md item 9: canvas/registration diagnostic for the AUROC-0.697 v0-E exclusion, numbers only, no images. Does NOT touch or re-download 1667_2um_pred.tif (the authors's ruling, the settled-rules file 2026-09-26, stands unchanged).",
+ "pred": "preds/ps512_scale1_dino_frozen_w018_20240304144031_2um_ckpt_023000_forward_220326.tif",
+ "model": "ps512_scale1_dino_frozen",
+ "segment": "w018",
+ "sha256": "895b09c22051822728e3c7705bab1277e292bd1df1dc3c75fdc86fb7d5584a48",
+ "bytes": 727069472,
+ "download_s": 7.4,
+ "reduce_s": 45.0,
+ "dtype": "uint8",
+ "upsample_note": "shape 21316x49181 = labels / 2; nearest-neighbour upsampled x2",
+ "eval_window": {
+  "bbox_rows_px": [
+   3873,
+   33008
+  ],
+  "bbox_cols_px": [
+   929,
+   96320
+  ],
+  "canvas_hw": [
+   42632,
+   98362
+  ]
+ },
+ "method": "AUROC recomputed from the same evaluated-label window used for registration, under 4 canvas hypotheses: identity (the registered result, on record), row_flip (label window mirrored top-bottom), col_flip (mirrored left-right), both_flip (180-degree rotation). Pred pixel values are read once, in normal order; only which label bits they are paired against changes.",
+ "variants": {
+  "identity": {
+   "auroc": 0.6970301393200028,
+   "recall_p05": 0.4491303363259367,
+   "reference_fp_p05": 0.1902120928657479,
+   "n_pos_px": 56493621,
+   "n_neg_px": 195935492
+  },
+  "row_flip": {
+   "auroc": 0.5111109337086123,
+   "recall_p05": 0.2545026455287757,
+   "reference_fp_p05": 0.23750707707412191,
+   "n_pos_px": 56493621,
+   "n_neg_px": 195935492
+  },
+  "col_flip": {
+   "auroc": 0.5205375905399742,
+   "recall_p05": 0.26106223568144094,
+   "reference_fp_p05": 0.2398629851094053,
+   "n_pos_px": 56493621,
+   "n_neg_px": 195935492
+  },
+  "both_flip": {
+   "auroc": 0.5337209345860354,
+   "recall_p05": 0.2423694349491246,
+   "reference_fp_p05": 0.20744472879880282,
+   "n_pos_px": 56493621,
+   "n_neg_px": 195935492
+  }
+ },
+ "on_record_registration_auroc": 0.6970301393200028,
+ "free_disk_gb_after_delete": 21.1
+}
