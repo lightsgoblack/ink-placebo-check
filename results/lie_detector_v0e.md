@@ -209,7 +209,7 @@ distinct models and are not 64 independent tests.
 ## Canvas/registration diagnostic for the AUROC-0.697 exclusion (redteam_ink.md item 9)
 The other v0-E registration exclusion, `ps512_scale1_dino_frozen` (w018, AUROC 0.697), never had the kind of
 "is this a canvas problem" scrutiny that `1667_2um_pred.tif` (AUROC 0.495) got. **This does not touch or
-re-download `1667_2um_pred.tif`** -- the authors's ruling (`the settled-rules file`, 2026-09-26) closed that file with no
+re-download `1667_2um_pred.tif`** -- the authors' ruling (`the settled-rules file`, 2026-09-26) closed that file with no
 further work, and that stands.
 
 The pred file (already on the frozen bucket listing, 727 MB) was re-downloaded through the harness

@@ -2,7 +2,7 @@
 
 The 1667_2um_pred.tif exclusion (AUROC 0.495, chance-level) was called a likely canvas/provenance problem on the
 strength of its registration numbers alone (near-chance AUROC, near-zero recall at p > 0.5) -- no image was ever
-made or viewed, and the authors's ruling (the settled-rules file 2026-09-26) closed that file with no further work: no
+made or viewed, and the authors' ruling (the settled-rules file 2026-09-26) closed that file with no further work: no
 re-download, no additional diagnostic. This script does NOT touch 1667_2um_pred.tif.
 
 It runs one extra, lightweight canvas check on the OTHER v0-E registration exclusion,
@@ -117,7 +117,7 @@ def main():
     out = {
         "created_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "purpose": "redteam_ink.md item 9: canvas/registration diagnostic for the AUROC-0.697 v0-E exclusion, "
-                   "numbers only, no images. Does NOT touch or re-download 1667_2um_pred.tif (the authors's ruling, "
+                   "numbers only, no images. Does NOT touch or re-download 1667_2um_pred.tif (the authors' ruling, "
                    "the settled-rules file 2026-09-26, stands unchanged).",
         "pred": REL, "model": "ps512_scale1_dino_frozen", "segment": SHORT, "sha256": digest,
         "bytes": bf.size, "download_s": download_s, "reduce_s": reduce_s,

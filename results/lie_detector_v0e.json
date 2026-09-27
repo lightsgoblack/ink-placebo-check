@@ -463,7 +463,7 @@
    "both_flip_auroc": 0.5337209345860354,
    "recall_p05_identity": 0.4491303363259367,
    "conclusion": "Identity (the on-record 0.697) is the best of the four by a wide margin; every mirror hypothesis falls back to near-chance (0.51-0.53). A genuine canvas/provenance mismatch (wrong flattening, swapped axis) would be expected to show a MUCH better AUROC under the correct mirror than under identity, the way 1667_2um_pred.tif's near-chance identity AUROC (0.495) and near-zero recall (3.4%) read as 'unrelated to this canvas' either way you cut it. This file's pattern is the opposite: correctly aligned already (best under identity), moderate discrimination (AUROC 0.697, recall 44.9%, well above the 1667 file's 3.4%) -- consistent with a genuinely below-gate model, not a canvas artifact. The pre-registered exclusion (AUROC < 0.75) stands unchanged either way; this is a fairness-to-the-model's-author note, not a protocol change.",
-   "note_on_1667_2um_pred": "This script does not re-download or further diagnose 1667_2um_pred.tif; the authors's ruling (the settled-rules file 2026-09-26) closed that file with no further work, and that ruling stands unchanged."
+   "note_on_1667_2um_pred": "This script does not re-download or further diagnose 1667_2um_pred.tif; the authors' ruling (the settled-rules file 2026-09-26) closed that file with no further work, and that ruling stands unchanged."
   }
  }
 }
