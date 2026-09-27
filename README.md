@@ -1,5 +1,7 @@
 # ink-placebo-check
 
+[![tests](https://github.com/lightsgoblack/ink-placebo-check/actions/workflows/tests.yml/badge.svg)](https://github.com/lightsgoblack/ink-placebo-check/actions/workflows/tests.yml)
+
 A pre-registered audit of AI ink-detection models on PHerc.1667, plus a drop-in tool to run it on your own
 predictions. Its pass/fail rules were frozen and hashed publicly before any result existed.
 

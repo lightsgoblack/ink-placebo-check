@@ -1,0 +1,16 @@
+name: tests
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install
+        run: python -m pip install -e . pytest
+      - name: Ink package tests (CPU only, no data downloads)
+        run: python -m pytest -q tools/margin/tests tools/tripwire/tests tools/placebo_check/tests
+      - name: Pre-registration hashes
+        run: sh prereg/verify_prereg.sh
