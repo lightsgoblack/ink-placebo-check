@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use this placebo audit or its tripwire/CLI, please cite it as below."
+title: "ink-placebo-check: a pre-registered ink-hallucination audit for PHerc.1667"
+type: software
+authors:
+  - name: "the authors Mark Robinson (lightsgoblack)"
+repository-code: "https://github.com/lightsgoblack/ink-placebo-check"
+license: "MIT"
+version: "1.0.0"
+date-released: "2026-10-01"
+keywords:
+  - Vesuvius Challenge
+  - Herculaneum papyri
+  - pre-registration
+  - ink detection
+  - hallucination audit

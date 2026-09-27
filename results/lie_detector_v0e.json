@@ -1,0 +1,432 @@
+{
+ "created_utc": "2026-09-26T15:06:45Z",
+ "code": "tools/margin/v0e.py",
+ "git_head": "e8d7f1a",
+ "frozen_rule": {
+  "file": "prereg/lie_detector_v0e.md",
+  "sha256": "a3dcaea682f49e561dca9bcfeac6eb23a9b34e6f87efdfe2a4f611a24fc54010",
+  "matches_HASHES_json": true,
+  "ideas_commit": "7538c31"
+ },
+ "regions_file": "results/lie_detector_v0e_regions.json",
+ "hard_stop": {
+  "segment": "w018",
+  "region": "ic_201",
+  "pred": "preds/1667_2um_pred.tif",
+  "utc": "2026-09-26T15:04:50Z",
+  "periodicity": {
+   "n_rows": 300,
+   "length_mm": 74.8488,
+   "T1_ratio_pooled": 91.40731051848473,
+   "T1_peak_period_mm": 4.158266666666666,
+   "p_tile_T1": 0.004975124378109453,
+   "tile_null_T1_median": 28.53713393133786,
+   "tile_null_T1_p95": 51.52056209372172,
+   "shuffle_cells_frac": 0.8363716231056446,
+   "mean": 0.028486732755511397
+  },
+  "blobs": {
+   "n_components": 77,
+   "letter_blobs": 2,
+   "S_max_letter_blobs_1mm_row": 1,
+   "largest_component_mm2": 9.101493559038001,
+   "null_S_p99": null,
+   "null_note": "S < 3: flag cannot fire, null not computed (pre-registered)"
+  },
+  "fp_area_frac": 0.02778270144359445
+ },
+ "synthetic_checks": {
+  "created_utc": "2026-09-26T14:59:28Z",
+  "all_harness_checks_pass": true,
+  "checks": {
+   "letter_rows_fire": {
+    "pass": true,
+    "periodicity_flag": true,
+    "blob_flag": true,
+    "p_tile_T1": 0.004975124378109453,
+    "S": 4,
+    "null_S_p99": 3.0
+   },
+   "planted_recovered": {
+    "pass": true,
+    "ratio": 1.5026408318149649,
+    "ci95": [
+     1.3076387647188918,
+     1.7719351440668643
+    ],
+    "expected": 1.5026408318149649,
+    "n_disks": 29,
+    "n_units": 27
+   },
+   "true_2x_pair_passes": {
+    "pass": true,
+    "ratio": 2.025240095483059,
+    "ci95": [
+     2.023846016359856,
+     2.026600571299261
+    ]
+   },
+   "self_pair_exact": {
+    "pass": true,
+    "A": {
+     "ratio": 1.0,
+     "ci95": [
+      1.0,
+      1.0
+     ],
+     "exact_1": true
+    },
+    "zero": {
+     "ratio": 1.0,
+     "ci95": [
+      1.0,
+      1.0
+     ],
+     "exact_1": true
+    }
+   },
+   "tile_sum_consistent": {
+    "pass": true
+   },
+   "periodicity_null_calibrated_pixel_noise": {
+    "pass": true,
+    "n_seeds": 50,
+    "fp_area_median": 0.019997442008929243,
+    "frac_p_le_0.01": 0.0,
+    "frac_p_le_0.05": 0.0,
+    "median_p": 0.40049751243781095
+   }
+  },
+  "tripwire_characterization": {
+   "scattered_20_letter_blobs_plus_speckle_full_tripwire": {
+    "fp_area": 0.2526286257393539,
+    "fires": true,
+    "periodicity_flag": true,
+    "blob_flag": false,
+    "p_tile_T1": 0.004975124378109453,
+    "S": 2,
+    "null_S_p99": null
+   },
+   "periodicity_rate_1_letter_blob": {
+    "n_seeds": 20,
+    "fp_area_median": 0.0044052871717720175,
+    "frac_p_le_0.01": 1.0,
+    "frac_p_le_0.05": 1.0,
+    "median_p": 0.004975124378109453
+   },
+   "periodicity_rate_4_letter_blobs": {
+    "n_seeds": 20,
+    "fp_area_median": 0.019056871414858182,
+    "frac_p_le_0.01": 1.0,
+    "frac_p_le_0.05": 1.0,
+    "median_p": 0.004975124378109453
+   },
+   "periodicity_rate_40_subtile_blobs_0.05-0.2mm2": {
+    "n_seeds": 20,
+    "fp_area_median": 0.011107346944490686,
+    "frac_p_le_0.01": 0.0,
+    "frac_p_le_0.05": 0.0,
+    "median_p": 0.40298507462686567
+   }
+  },
+  "reading": "The periodicity part of the frozen Amendment D flag compares the observed row profile with a 1 mm tile-shuffle null. The null is exact for structureless pixel noise, but shuffling 1 mm tiles also destroys any FP structure coherent over > 1 mm, so isolated letter-sized blobs (no rows) push p to its minimum. A firing therefore means 'FP structure coherent over > 1 mm in the placebo', not specifically 'rows'. Under the frozen rule it is still a HARD STOP and The authors decide. The blob-row part needs S >= 3 blobs in one 1 mm row, above the shuffled p99."
+ },
+ "segments": {
+  "w018": {
+   "region": "ic_201",
+   "region_px": 94836746,
+   "region_area_mm2": 545.8,
+   "n_tile_blocks": 30,
+   "tile_block_px_min_median_max": [
+    1764548,
+    3123597,
+    4259076
+   ],
+   "n_listed": 11,
+   "n_reduced": 1,
+   "n_main": 0,
+   "excluded": [
+    {
+     "pred": "preds/1667_2um_pred.tif",
+     "why": "registration AUROC 0.495 < 0.75"
+    }
+   ],
+   "family_rows": [],
+   "merged_duplicates": [],
+   "registration_fail_frac": 1.0,
+   "models": [
+    {
+     "model": "1667_2um_pred",
+     "pred": "preds/1667_2um_pred.tif",
+     "role": "excluded: registration",
+     "upsample_factor": 1,
+     "registration_auroc": 0.4948347768909112,
+     "recall_p05": 0.03428599487365131,
+     "placebo_fp_area": 0.02778270144359445,
+     "placebo_fp_px": 2634821,
+     "reference_fp": 0.02901724920771373,
+     "placebo_over_reference": 0.9574546934038428,
+     "letter_blobs": 2,
+     "letter_blob_per_cm2": 0.366431546501504,
+     "S_1mm_row": 1,
+     "S_null_p99": null,
+     "T1": 91.40731051848473,
+     "T1_peak_mm": 4.158266666666666,
+     "p_tile_T1": 0.004975124378109453,
+     "periodicity_flag": true,
+     "blob_flag": false,
+     "text_like_flag": true,
+     "family_keyword_hits": [],
+     "sha256": "63bb1b2acfa3f47bbd50143da20727d9c13e5089c90636b54d73e75c7ee7a0d9",
+     "download_s": 3.2,
+     "runtime_s": 32.6
+    }
+   ],
+   "pairs": [],
+   "self_pairs": {},
+   "consensus": null
+  },
+  "w023": {
+   "region": "ic_132",
+   "region_px": 133899513,
+   "region_area_mm2": 770.6,
+   "n_tile_blocks": 51,
+   "tile_block_px_min_median_max": [
+    11092,
+    2878004,
+    4343056
+   ],
+   "n_listed": 8,
+   "n_reduced": 0,
+   "n_main": 0,
+   "excluded": [],
+   "family_rows": [],
+   "merged_duplicates": [],
+   "registration_fail_frac": null,
+   "models": [],
+   "pairs": [],
+   "self_pairs": {},
+   "consensus": null
+  }
+ },
+ "verdict": "E1: PASS (18 remaining preds + 2 consensus checks, no tripwire fire). Base v0-E stop on 1667_2um_pred.tif stays CLOSED (registration artifact, excluded by rule).",
+ "verdict_rule": ">= 1 model pair with placebo FP ratio >= 1.5 and 95% CI excluding 1, AND Spearman >= 0.5",
+ "closed_stop": {
+  "record": {
+   "segment": "w018",
+   "region": "ic_201",
+   "pred": "preds/1667_2um_pred.tif",
+   "utc": "2026-09-26T15:04:50Z",
+   "periodicity": {
+    "n_rows": 300,
+    "length_mm": 74.8488,
+    "T1_ratio_pooled": 91.40731051848473,
+    "T1_peak_period_mm": 4.158266666666666,
+    "p_tile_T1": 0.004975124378109453,
+    "tile_null_T1_median": 28.53713393133786,
+    "tile_null_T1_p95": 51.52056209372172,
+    "shuffle_cells_frac": 0.8363716231056446,
+    "mean": 0.028486732755511397
+   },
+   "blobs": {
+    "n_components": 77,
+    "letter_blobs": 2,
+    "S_max_letter_blobs_1mm_row": 1,
+    "largest_component_mm2": 9.101493559038001,
+    "null_S_p99": null,
+    "null_note": "S < 3: flag cannot fire, null not computed (pre-registered)"
+   },
+   "fp_area_frac": 0.02778270144359445
+  },
+  "ruling": "the authors, 2026-09-26: the stop on 1667_2um_pred.tif (w018 ic_201) is CLOSED as an alignment artifact (registration AUROC 0.495, 4.2 mm rhythm, not line pitch, no letter rows). The file is excluded under E1's registration rule and gets no further work: no re-download, no canvas diagnosis.",
+  "archived_as": "data/v0e/HARD_STOP_closed_2026-09-26.json (renamed from HARD_STOP.json, not deleted; sha256 545946817ff06236aba0bc4b2c7450bede1a9d4ec1b4dff09c9c0974536fd46c)"
+ },
+ "e1": {
+  "frozen_rule": {
+   "file": "prereg/lie_detector_v0e_e1.md",
+   "label": "P5 (amendment to P2)",
+   "sha256": "a298a10c53c2d1ebca9e1a247c403538652851b868f242bb2a8039093d017273",
+   "matches_HASHES_json": true,
+   "ideas_commit": "d4ee0ef",
+   "approved": "the authors 2026-09-26 ('Criteria approved')"
+  },
+  "code": "tools/margin/tripwire_e1.py (tests: tools/margin/tests/test_tripwire_e1.py)",
+  "status": "Run under E1 on the 18 remaining preds, 2026-09-27. No E1 fire anywhere (18 preds + 2 consensus checks). Verdict: PASS.",
+  "written_utc": "2026-09-26T16:19:21Z",
+  "interpretations_fixed_before_preds": {
+   "registration_first": "Registration is computed in a first pass that reads only the window of the evaluated label mask (val_v2 | sup_v2 | sup_v1) and uses only its pixels: pixel AUROC of inklabels_v2 > 0 vs == 0, as frozen in P2. The placebo crop is read in a second pass, and only if AUROC >= 0.75. An excluded pred keeps its registration numbers (AUROC, recall at p > 0.5, in-mask unlabeled FP, pixel counts); no placebo statistic is computed or stored for it.",
+   "components": "The region's own connected components of (p > 0.5) inside the guarded region at full resolution, 8-connected (the connectivity of the frozen label_components).",
+   "lattice": "Components are translated by whole 104 px cells (one 0.25 mm pooled row, 0.2495 mm) in both axes. Footprints are pixel-exact. Row counts per 0.25 mm row and centroids therefore move exactly with each component.",
+   "proposal": "A try draws a lattice translation uniformly among those that keep the component's bounding box inside the region's bounding box. It succeeds if every pixel lands inside the guarded region mask and no pixel overlaps or touches (8-neighbourhood) a pixel of another placed component.",
+   "non_overlapping": "'Non-overlapping' is read as neither overlapping nor touching, so every placed component stays a separate connected component and keeps its size and shape exactly (E1: 'the shuffle keeps sizes and shapes').",
+   "order_and_rounds": "Components are placed in order of area (largest first; ties in raster order of the first pixel), in rounds. In each round every component not yet placed makes one try. A try is rejected if it leaves the region, overlaps or touches a component placed in an earlier round, or overlaps or touches a same-round try of a larger (earlier) component that lies inside the region. At most 1,000 rounds, so at most 1,000 tries per component. A component still not placed keeps its original position; these are counted and reported.",
+   "random_draws": "Surrogate k of a pred uses numpy default_rng(20260925 + k); in the consensus, model m uses default_rng([20260925 + k, m]), m = the model's index in the pre-registered pred list of its segment (regions file order). In each round the generator draws rng.integers(0, n_rows) and then rng.integers(0, n_cols) for the unplaced components in placement order.",
+   "surrogate_statistics": "A surrogate's statistics come from its component list: the 0.25 mm row counts are the sum of each component's row counts shifted by its row translation, and S uses the letter-sized components' centroids shifted by the same translation. Because placed components never overlap or touch, these equal the statistics of the rendered surrogate map (checked in the unit tests). A component that keeps its original position counts there.",
+   "part_a": "T1 = the frozen statistic (forensics_analyze.Profile rows: 0.25 mm pooled rows whose region px >= 10% of the fullest row, the full span between the first and last such row; reduce_pred.periodogram_stat: linear detrend, max power over periods 2.5-8 mm / median power over 0.5-8 mm), recomputed on every surrogate. p_a = (1 + #{T1_k >= T1}) / 1001; part (a) fires iff p_a <= 0.001.",
+   "part_b": "S = frozen letter_S (letter-sized = 1-4 mm2 at 2.399 um px; centroid rows; 1 mm window = 416.84 px). p_b = (1 + #{S_k >= S}) / 1001 is reported. Part (b) fires iff S >= 3 and S > max_k S_k.",
+   "consensus": "Per segment, after all its preds: part (a) on the mean of the p > 0.5 maps of the preds that pass registration (AUROC >= 0.75), family-row preds included (as in P2's consensus). The mean map's row profile is the mean of the models' 0.25 mm row counts. Null: each model's components are shuffled independently per surrogate (seeds above). Same fire rule.",
+   "two_implementations": "Two exact implementations of this one procedure (pair tables for <= 128 components, a full-resolution bitmap above). Same draws, same accept/reject decisions, identical surrogates (unit-tested); the choice only changes speed.",
+   "validation_stop_early": "The validation counts fires with this same code and seeds. For speed it stops computing surrogates for a fill once neither part can fire (a surrogate has reached the observed T1, and S < 3 or a surrogate has reached S). That cannot change the decision: firing needs the observed value to beat every one of the 1,000 surrogates, and every surrogate is computed the same way whether or not later ones are. The real run computes all 1,000 surrogates, so its p values are exact.",
+   "stop_semantics": "Any E1 fire (pred or consensus) is a HARD STOP under text rule (a): computing stops, only scalars are kept, and the saved full-resolution p > 0.5 crops are deleted. No image is made at any point.",
+   "saved_maps": "Each registered pred's placebo p > 0.5 crop is kept as a bit-packed array (data/v0e/, never in git, never an image) for the consensus null, and deleted when the run ends or stops.",
+   "planted_copy": "The planted-blob sanity copy is synthetic, not a model's output; the tripwire is not run on it.",
+   "excluded_1667": "1667_2um_pred.tif is excluded under E1's registration rule (AUROC 0.495); its registration numbers come from its earlier record, and it is not downloaded again.",
+   "registration_pause": "If 3 or more of the 18 remaining preds fail registration, the run pauses and reports before anything else (lead's instruction; P2 treats registration failure as a possible harness bug)."
+  },
+  "validation": {
+   "code": "tools/margin/e1_validation.py",
+   "spec": {
+    "status": "Fixed in writing and committed before the counted validation run. Development runs use other seeds (default_rng([20260927, ...])) and only debug code; no generator parameter is changed after the counted run starts.",
+    "regions": "The real guarded full-resolution masks of v0-E: w018 ic_201 (crop rows 2080-33696, cols 81952-85696) and w023 ic_132 (crop rows 2496-36192, cols 55328-59904), rebuilt from data/v0e/regions_<seg>.npz exactly as the v0-E harness does and checked against the committed crop_mask_sha256.",
+    "pixel": "2.399 um per px (416.84 px per mm) on both axes of the flattened canvas.",
+    "fills": "100 fills per case per region; fill f of case c on segment s uses numpy default_rng([20260926, c, s, f]) with c = 1..6 in the order Q1, Q2, Q3, F1, F2, F3 and s = 18 or 23. Every fill is a bool p > 0.5 map inside the region mask; nothing else is on it.",
+    "letter_blob": "An upright filled ellipse standing in for one letter as a model's p > 0.5 blob: height h ~ U[1.5, 3.0] mm (letters 1.5-3 mm tall), ink area A ~ U[1.2, 3.5] mm2 (inside the 1-4 mm2 letter class, with room for rasterization), width w = 4A / (pi h). Pixel (dy, dx) from the centre pixel is inked iff (dy / ry)^2 + (dx / rx)^2 <= 1 with ry = h/2, rx = w/2 in px. The rasterized area is checked to be 1-4 mm2.",
+    "Q1": "Must stay quiet. One letter blob; its centre is drawn uniformly over region pixels (uniform in the region's bounding box, redrawn off the mask) until the whole blob lies inside the region.",
+    "Q2": "Must stay quiet. Four letter blobs, placed one after another as in Q1; a draw that overlaps or touches (8-neighbourhood) an earlier blob is redrawn.",
+    "Q3": "Must stay quiet. Structureless pixel noise: every region pixel is independently p > 0.5 with probability 0.0278, the placebo FP area of the one pred processed so far (2.778%, about 2.8%). Drawn in 1024-row strips as rng.random(dtype=float32) < 0.0278.",
+    "F1": "Must fire. Planted letter rows at 6 mm pitch: line centres at r_top + (phi + 6 k) mm, phi ~ U[0, 6) mm, r_top = the region's first row, k = 0, 1, ... while the line centre is inside the region's rows. Along each line, letter blobs (as above) are set left to right: the first starts g ~ U[0.3, 0.8] mm right of the region's left edge on the line-centre row, each next one after a gap g ~ U[0.3, 0.8] mm; each letter's centre row is the line centre + U[-0.2, 0.2] mm (baseline wobble). The line ends when the next letter would pass the region's right edge on that row. A letter not fully inside the region is left out (the line continues). Letters never touch: gaps >= 0.3 mm, and lines are 6 mm apart with letters <= 3 mm tall.",
+    "F2": "Must fire. Pure periodic rows, no letters, at 4 mm pitch: row centres at r_top + (phi + 4 k) mm, phi ~ U[0, 4) mm. Each row is a solid band of thickness t ~ U[0.8, 1.2] mm over the longest run of columns where the region covers every row of the band, shortened by 0.1 mm at each end. A band that would leave the region's rows, or whose length is < 90% of the region's median row width, is left out, so every band is > 4 mm2 (not letter-sized).",
+    "F3": "Must fire. As F2 at 6 mm pitch (phi ~ U[0, 6) mm).",
+    "tripwire": "tools.margin.tripwire_e1.Region(mask).tripwire(fill, n_surr=1000, seed0=20260925, stop_early=True): the code the real run uses, at the E1 fire rule (see its INTERPRETATIONS, 'validation_stop_early').",
+    "gates": {
+     "quiet": "Q1, Q2, Q3: fires <= 2 of 100 on each region",
+     "fire": "F1, F2, F3: fires >= 95 of 100 on each region",
+     "rule": "All 12 (case, region) cells must pass. If any fails, E1 is not used and v0-E stays stopped (frozen). No iteration to make a case pass."
+    }
+   },
+   "table": null
+  },
+  "run": {
+   "run_utc": "2026-09-27T13:05:48Z",
+   "code": "tools/margin/v0e_e1.py",
+   "git_head": "9a95176",
+   "order": "pre-registered (regions file order): w018 then w023; 1667_2um_pred.tif skipped (closed stop, excluded by rule, not re-downloaded)",
+   "registration": {
+    "w018": {
+     "n_listed": 11,
+     "n_registration_fail": 2,
+     "fails": [
+      "preds/1667_2um_pred.tif (AUROC 0.495, earlier record)",
+      "preds/ps512_scale1_dino_frozen_w018_..._ckpt_023000_forward_220326.tif (AUROC 0.697)"
+     ]
+    },
+    "w023": {
+     "n_listed": 8,
+     "n_registration_fail": 0,
+     "fails": []
+    },
+    "pause_rule": "3+ of 18 fail -> pause; actual: 2 of 18 (1667 + dino_frozen), both in w018 -> no pause"
+   },
+   "tripwire_e1_fires": "none: 0 of 17 registered preds, 0 of 2 consensus checks",
+   "consensus": {
+    "w018": {
+     "n_models": 9,
+     "T1": 14.75650825834617,
+     "null_max": 111.46236895178099,
+     "p": 0.97002997002997,
+     "fire": false
+    },
+    "w023": {
+     "n_models": 8,
+     "T1": 21.788671112946062,
+     "null_max": 80.76496326338847,
+     "p": 0.7882117882117882,
+     "fire": false
+    }
+   },
+   "sanity": {
+    "registration_used_all_ge_0.75": true,
+    "registration_fail_le_half_each_segment": true,
+    "planted_recovered": true,
+    "self_pair_exact_all": true,
+    "frozen_cross_check_all": true
+   },
+   "counts": {
+    "pairs": 64,
+    "pairs_ci_excl_1": 47,
+    "pairs_ratio_ge_1.5": 34,
+    "pairs_pass": 34
+   },
+   "spearman": {
+    "models": [
+     "ps256_bcesmooth0.1_dicesmooth0.1",
+     "ps256_mean",
+     "ps48_640_640_smooth_0.1",
+     "ps512_betti_ema_0.9995_meanteacher",
+     "ps512_max",
+     "ps512_max_betti",
+     "ps512_max_boundary",
+     "ps512_no_zstride"
+    ],
+    "rho": 0.8571428571428572,
+    "n": 8,
+    "w018": [
+     0.059242848758222895,
+     0.01330662483927907,
+     0.06633473063278658,
+     0.0373417388234725,
+     0.05720060239097617,
+     0.05328712986419842,
+     0.08122542500561966,
+     0.02323586682318265
+    ],
+    "w023": [
+     0.07461800103783799,
+     0.03184665055503227,
+     0.0700287237041706,
+     0.06884868953929653,
+     0.0824007776637694,
+     0.0477393670580415,
+     0.08297306503273093,
+     0.029667471606114056
+    ]
+   },
+   "verdict": "PASS",
+   "verdict_rule": ">= 1 model pair with placebo FP ratio >= 1.5 and 95% CI excluding 1, AND Spearman >= 0.5",
+   "verdict_context": {
+    "any_pass_pair": true,
+    "all_ci_include_1": false,
+    "all_fp_below_0.1pct": false,
+    "spearman": 0.8571428571428572,
+    "kill_clauses_true": []
+   },
+   "margins_row": "NOT RUN: conditional on the org confirming the column foot at high z (not confirmed).",
+   "planted_sanity": {
+    "target_px": 2809199.5,
+    "planted_px": 2891007,
+    "n_disks": 9,
+    "disk_mm2": 2.0,
+    "expected_ratio": 1.5145606426314686,
+    "letter_blobs_after": 7,
+    "letter_blobs_before": 0,
+    "model": "ps256_bcesmooth0.1_dicesmooth0.1",
+    "ratio": 1.5145606426314686,
+    "ci95": [
+     1.2609762419242443,
+     1.8232212955149179
+    ],
+    "recovered": true,
+    "ci_excludes_1": true
+   },
+   "full_analysis_file": "data/v0e/e1/analysis.json (not in git; raw scan-derived scalars, gitignored data/)",
+   "deviations": [
+    "Peak RSS during w023 reduce hit 3.47 GB, above the <=3 GB target (see resources.note_peak_rss). No functional bug; the harness's own MemAvailable/disk gates were respected throughout and nothing failed."
+   ],
+   "resources": {
+    "peak_rss_gb": {
+     "w018_reduce": 2.89,
+     "w023_reduce": 3.47,
+     "analyze": 0.11
+    },
+    "note_peak_rss": "w023 reduce peaked at 3.47 GB (budget was <=3 GB); driven by the largest pred in w018 (1541-3278 8-connected components) held with its surrogate placement tables in memory during the 8-model consensus at the end of w023. No swap used, MemAvailable stayed >=4 GB before every download (checked by the harness itself), nothing crashed or was killed; logged as a deviation from the <=3 GB target, not a correctness issue.",
+    "wall_s": {
+     "w018_reduce": 5806,
+     "w023_reduce": 13206,
+     "analyze": 0
+    },
+    "disk_free_gb_floor": 12.0,
+    "cost": "$0 (CPU only)"
+   }
+  }
+ }
+}

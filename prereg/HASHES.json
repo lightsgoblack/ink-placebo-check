@@ -1,0 +1,10 @@
+{
+ "lie_detector_v0e.md": {
+  "label": "P2",
+  "sha256": "a3dcaea682f49e561dca9bcfeac6eb23a9b34e6f87efdfe2a4f611a24fc54010"
+ },
+ "lie_detector_v0e_e1.md": {
+  "label": "P5",
+  "sha256": "a298a10c53c2d1ebca9e1a247c403538652851b868f242bb2a8039093d017273"
+ }
+}

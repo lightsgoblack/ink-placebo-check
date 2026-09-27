@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ink-placebo-check"
+version = "1.0.0"
+description = "Pre-registered ink-hallucination audit for PHerc.1667: the placebo check CLI and its text tripwire."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = [
+    "numpy",
+    "scipy",
+    "tifffile",
+    "imagecodecs",
+    "zarr",
+    "huggingface_hub",
+]
+
+[project.urls]
+Repository = "https://github.com/lightsgoblack/ink-placebo-check"
+
+[tool.setuptools.packages.find]
+include = ["tools*"]
+
+[tool.setuptools.package-data]
+"*" = ["*.json", "*.md", "*.npz"]
