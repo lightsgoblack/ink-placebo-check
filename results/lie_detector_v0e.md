@@ -90,6 +90,12 @@ all-used >= 0.75, registration-fail <= 50% per segment, planted blob recovered a
 gate >= 1.3), all self-pairs exact 1.00, frozen cross-check all true). Margins row: **not run**, unchanged
 (conditional on the org confirming the column foot at high z; still unconfirmed).
 
+**Pair independence caveat (in plain English: these 34/64 pairs are not 34 separate coin flips).** The pairs
+counted above are drawn from only 17 distinct registered models (9 on w018 + 8 on w023) compared against each
+other within their segment, so the 64 within-segment pairs share models across many pairs -- this is not 64
+independent tests. Read "34/64" as "how often ratio-consistency held across this pool of 17 models," not as 64
+separately-powered trials. (redteam_ink.md item 8; see also the post-hoc section below.)
+
 ## Registration (pass 1, before any placebo pixel is read)
 | Segment | Listed | Registration fail | Which |
 |---|---|---|---|
@@ -164,5 +170,75 @@ blob to check the ratio machinery works, not a model result; the tripwire is nev
   right after reduce.
 - **Cost.** CPU only (1-2 BLAS threads, `nice -n 10`), $0.
 
+---
+
+# Post-hoc (not pre-registered)
+
+**In plain English: two of the red team's "should fix" items from `internal/release/redteam_ink.md` needed a real
+computation, not just a wording change. This section is that computation, added on 2026-09-27, after the PASS
+verdict above and clearly marked as after-the-fact.** Neither item changes the frozen verdict: P2/P5 never asked
+for a Spearman confidence interval or p-value, and the PASS rule's own gate (Spearman >= 0.5) already held
+before this section existed.
+
+## Spearman rho uncertainty (redteam_ink.md item 7)
+The verdict's Spearman rho = 0.857 (n = 8 models shared between w018 and w023) had no interval or p-value on
+record. Both added here, computed on the same 8 (w018, w023) placebo-FP-area pairs already in
+`results/lie_detector_v0e.json` (`e1.run.spearman`):
+
+- **Bootstrap 95% CI: [0.289, 1.000].** Paired resample with replacement of the 8 shared models (numpy
+  `default_rng`, seed 20260925, B = 2000, percentile method); every one of the 2000 resamples had non-degenerate
+  variance in both arms (0 dropped).
+- **Exact permutation p-value: two-tailed 0.0107, one-tailed (greater) 0.0054.** All 8! = 40,320 permutations of
+  one arm's model order against the fixed other arm were enumerated (exact, not Monte Carlo); the p-value is the
+  fraction of permutations whose |rho| (two-tailed) or rho (one-tailed) meets or beats the observed 0.857.
+
+**In plain English:** if there were truly no consistent pattern between which models a placebo region "prefers"
+on w018 versus w023, an agreement this strong would happen by chance only about 1 in 100 times (two-tailed) --
+and if we'd resample which 8 models we happened to compare, the true agreement could plausibly be anywhere from
+weak-positive to perfect, because n = 8 is small. Both facts were already implied by "rho = 0.857, n = 8" but
+neither was stated as a number before now.
+
+Code: computed directly from the stored per-model FP-area arrays (`scipy.stats.spearmanr`, `itertools.permutations`,
+`numpy.random.default_rng`); this JSON block is under `post_hoc.spearman_rho_uncertainty` in
+`results/lie_detector_v0e.json`.
+
+## Pair independence caveat (redteam_ink.md item 8)
+Stated in the Verdict section above and repeated here for the record: the 34/64 pairs are drawn from only 17
+distinct models and are not 64 independent tests.
+
+## Canvas/registration diagnostic for the AUROC-0.697 exclusion (redteam_ink.md item 9)
+The other v0-E registration exclusion, `ps512_scale1_dino_frozen` (w018, AUROC 0.697), never had the kind of
+"is this a canvas problem" scrutiny that `1667_2um_pred.tif` (AUROC 0.495) got. **This does not touch or
+re-download `1667_2um_pred.tif`** -- the authors's ruling (`the settled-rules file`, 2026-09-26) closed that file with no
+further work, and that stands.
+
+The pred file (already on the frozen bucket listing, 727 MB) was re-downloaded through the harness
+(`tools/margin/canvas_diag_0697.py`, single file), its AUROC against the published labels recomputed inside the
+same evaluated-label window used for registration under 4 canvas hypotheses, and the raw file deleted
+afterwards. No image was made, viewed, or saved.
+
+| Hypothesis | AUROC |
+|---|---|
+| identity (on record) | 0.697 |
+| row flip (mirror top-bottom) | 0.511 |
+| column flip (mirror left-right) | 0.521 |
+| both flips (180-degree rotation) | 0.534 |
+
+**In plain English: if this file's problem were "it's on the wrong canvas" (flipped or mirrored), flipping it
+back should have made it line up much better with the known labels. It didn't -- every flip is close to a coin
+flip (chance), while the un-flipped version is clearly the best of the four.** That is the opposite pattern from
+`1667_2um_pred.tif`, whose un-flipped AUROC (0.495) was itself at chance and whose recall at p > 0.5 was only
+3.4% -- a file whose values read as unrelated to this canvas no matter how you look at it. `ps512_scale1_dino_frozen`
+is already correctly aligned (best under identity) and has real, if below-gate, discrimination (AUROC 0.697,
+recall 44.9%, both well above the 1667 file's numbers). **Diagnosis: a genuinely below-threshold model, not a
+canvas/provenance artifact.** The pre-registered exclusion (AUROC < 0.75 -> no placebo pixel read) is unchanged;
+this is a documented, fairness-to-the-model's-author reason for the exclusion, not a protocol change.
+
+Full numbers: `results/lie_detector_v0e_canvas_diag_0697.json`; summarized under `post_hoc.canvas_diag_auroc_0697_exclusion`
+in `results/lie_detector_v0e.json`. Resources: one 727 MB single-file download (7.4 s) through the same
+resource-gated harness path as the E1 run, ~45 s to stream and reduce (1-2 threads, `nice -n 10`), disk >= 21 GB
+free throughout, raw file deleted immediately after. $0.
+
 ## Overnight queue
-`internal/OVERNIGHT_QUEUE.md` job 2 updated to DONE with this verdict.
+`internal/OVERNIGHT_QUEUE.md` job 2 updated to DONE with this verdict. Job 10 (this post-hoc section) tracked
+separately.

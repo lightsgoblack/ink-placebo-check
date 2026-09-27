@@ -100,9 +100,13 @@ after the original flag turned out to fire on a single isolated letter-sized blo
 **No tripwire fire** on any of the 16 registered models or the 2 per-segment consensus checks. Verdict **PASS**:
 34 of 64 model pairs show placebo false-positive ratio >= 1.5 with a 95% CI excluding 1, and the pattern of
 *where* models put extra ink in the placebo is consistent between the two segments (Spearman rho = 0.857, n =
-8). PASS is a statement about the harness -- these models reliably distinguish something between the two
-segments' blank patches in a way that replicates -- not a claim that any model found text; rule (a) already
-says none did, because nothing fired. Full per-model table: `results/lie_detector_v0e.md`.
+8; post-hoc 95% bootstrap CI [0.289, 1.000], exact permutation p = 0.011 two-tailed -- see
+`results/lie_detector_v0e.md` "Post-hoc"). PASS is a statement about the harness -- these models reliably
+distinguish something between the two segments' blank patches in a way that replicates -- not a claim that any
+model found text; rule (a) already says none did, because nothing fired. **The 34/64 pairs are not 64
+independent tests** -- in plain English, they're drawn from only 17 distinct models (9 + 8), so many pairs share
+a model with other pairs; read the fraction as how often ratio-consistency held across that pool of 17 models,
+not as 64 separately-powered trials. Full per-model table: `results/lie_detector_v0e.md`.
 
 One file, `1667_2um_pred.tif`, stopped the run's first pass on 2026-09-26 under the pre-E1 tripwire; it fails
 registration (AUROC 0.495) and was closed as a registration/alignment artifact, not a text-like result --

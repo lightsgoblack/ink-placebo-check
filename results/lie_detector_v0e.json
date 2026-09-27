@@ -428,5 +428,42 @@
     "cost": "$0 (CPU only)"
    }
   }
+ },
+ "post_hoc": {
+  "status": "POST-HOC, DESCRIPTIVE. Not pre-registered (P2/P5 have no CI/p-value clause for the Spearman rho). Added after redteam_ink.md items 7 and 8; changes nothing about the frozen PASS verdict or its rule (>= 1 pair ratio>=1.5 w/ CI excl. 1, AND Spearman >= 0.5).",
+  "spearman_rho_uncertainty": {
+   "post_hoc_not_preregistered": true,
+   "note": "Descriptive only; the frozen v0-E PASS verdict (rho=0.857, n=8, gate >= 0.5) is unchanged. This block adds uncertainty around that already-reported point estimate; it is not a new test and changes nothing about PASS/KILL.",
+   "observed_rho": 0.8571428571428572,
+   "n": 8,
+   "exact_permutation_test": {
+    "method": "all 8! = 40320 permutations of one arm's model order against the fixed other arm; exact, not Monte Carlo",
+    "n_permutations": 40320,
+    "p_two_tailed": 0.010714285714285714,
+    "p_one_tailed_greater": 0.005357142857142857
+   },
+   "bootstrap_ci_95": {
+    "method": "paired resample with replacement of the 8 shared models (numpy default_rng, seed 20260925), B=2000, percentile CI; resamples with zero variance in either arm (rho undefined) are dropped from the percentile calculation and counted",
+    "seed": 20260925,
+    "B": 2000,
+    "n_valid": 2000,
+    "n_degenerate_dropped": 0,
+    "ci": [
+     0.2894736842105264,
+     1.0
+    ]
+   }
+  },
+  "pair_independence_caveat": "The '34/64 model pairs pass' count is drawn from within-segment pairs of only 17 distinct registered models (9 on w018 + 8 on w023), so the 64 pairs are not 64 independent tests -- many pairs share a model with other pairs. Read the fraction as 'how often ratio-consistency held across this pool of 17 models', not as 64 separately-powered trials.",
+  "canvas_diag_auroc_0697_exclusion": {
+   "summary": "Ran the same registration diagnostic used to call 1667_2um_pred.tif (AUROC 0.495) a likely canvas/provenance problem -- but applied to the OTHER registration exclusion, ps512_scale1_dino_frozen (AUROC 0.697) -- plus one new check neither exclusion had before: AUROC under row-flip / col-flip / both-flip of the same evaluated-label window. Full numbers: results/lie_detector_v0e_canvas_diag_0697.json.",
+   "identity_auroc": 0.6970301393200028,
+   "row_flip_auroc": 0.5111109337086123,
+   "col_flip_auroc": 0.5205375905399742,
+   "both_flip_auroc": 0.5337209345860354,
+   "recall_p05_identity": 0.4491303363259367,
+   "conclusion": "Identity (the on-record 0.697) is the best of the four by a wide margin; every mirror hypothesis falls back to near-chance (0.51-0.53). A genuine canvas/provenance mismatch (wrong flattening, swapped axis) would be expected to show a MUCH better AUROC under the correct mirror than under identity, the way 1667_2um_pred.tif's near-chance identity AUROC (0.495) and near-zero recall (3.4%) read as 'unrelated to this canvas' either way you cut it. This file's pattern is the opposite: correctly aligned already (best under identity), moderate discrimination (AUROC 0.697, recall 44.9%, well above the 1667 file's 3.4%) -- consistent with a genuinely below-gate model, not a canvas artifact. The pre-registered exclusion (AUROC < 0.75) stands unchanged either way; this is a fairness-to-the-model's-author note, not a protocol change.",
+   "note_on_1667_2um_pred": "This script does not re-download or further diagnose 1667_2um_pred.tif; the authors's ruling (the settled-rules file 2026-09-26) closed that file with no further work, and that ruling stands unchanged."
+  }
  }
 }
